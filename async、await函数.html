@@ -1,0 +1,36 @@
+
+// async函数默认返回一个promise对象
+async function getA(){
+
+    //  如果在这里有错误就会被catch捕获到
+    // throw new Error('我故意的')
+    
+    return   '吓死宝宝了'   //这里的返回值就是then里面函数的参数。
+}
+
+ getA().then((res)=>{console.log(res)}).catch((error)=>{console.log(error)})
+ 
+ 
+ //===============async===================await==========================================================
+ 
+ let p = new Promise((resolve,reject)=>{
+          reject("错啦")；
+          resolve("正常情况")；
+ });
+ async function  getA(){
+    //  await  后面是一个promise实例   如果不是也会执行转化为promise对象
+    // await 是一个语法糖 ，不用用过then方法  就可以拿到reject/resolve方法的参数。
+    let a = await p;    //   await会暂停他后面的语句执行，直到p执行完，然后在往下执行。
+    return a;
+ }
+ 
+ getA().then((res)=>{console.log(res)}).catch((error)=>{console.log(error)})
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
