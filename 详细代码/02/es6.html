@@ -7,8 +7,52 @@
     <script type="text/babel">
     let a=12;
     let b=5;
+    
+    
 
     alert(a+b);
+    
+   1.作用域有3种      
+
+            全局作用域；
+            块级作用域；
+            一个语句可以创建两个作用域，for语句声明的变量：for循环时声明的变量与代码块里声明的同名变量不是同一个变量。
+
+    2.let和const声明的变量都有暂时性死区：
+              不受外部同名变量影响：即使在let/const块级作用域之外声明了一个同名变量，但是在块级作用域内  变量在声明之前先使用  也会报错
+              在各自作用域内，一定要先声明后使用，否则会报错语法。
+    3.let/const不允许在相同作用域内，重复声明同一个变量。
+    4.ES6 的块级作用域必须有大括号，如果没有大括号，JavaScript 引擎就认为不存在块级作用域：
+        if (true) let x = 1; 报错，因为没有块机作用域
+
+    5.typeof   在暂时性死区里使用     任然会报错。
+    
+    6.所谓的函数声明提前：（这并不是s6的内容而是es5的）
+
+             function f() { console.log('I am outside!'); }
+                     (function () {
+                             if (false) {
+                             // 重复声明一次函数f
+                                      function f() { console.log('I am inside!');                    }
+                      }
+                     f();
+                 }());
+       在浏览器里会理解为：
+         function f() { console.log('I am outside!'); }
+        (function () {
+                    function f() { console.log('I am inside!'); }
+                    if (false) {}
+                    f();
+         }());
+    自注：函数声明的提前是函数在外层函数里并且函数在外层函数里的一个{}里。但是var变量声明提前的位置先于函数声明提前的位置。
+
+7.let和const声明变量的区别在于：let声明是可不初始化const不行。
+8.es6声明变量有6种方式：参考第二章的“es6   声明变量的六种方法”。 
+9.es6声明6种方式的区别：参考第二章的“顶层对象的属性”。es6中顶层对象和全局对象不再挂钩。
+10.不同环境的全局对象：
+        webworker里面：有self指向顶层对象；
+        在浏览器里：有windows指向顶层对象；
+        在node里：有global指向顶层对象。
     </script>
   </head>
   <body> 
