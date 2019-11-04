@@ -30,7 +30,7 @@
             也就是说，对象的解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量。真正被赋值的是后者，而不是前者：
                 let { foo: baz } = { foo: 'aaa', bar: 'bbb' };
                 // baz // "aaa"
-                // foo // error: foo is not defined
+                // foo // error: foo is not defined    foo只是匹配的模式  而不是   变量
         3.模式可以 被匹配多次：
                 let obj = {
                       p: [
@@ -46,8 +46,26 @@
           4.注意，对象的解构赋值可以取到继承的属性。
           
           
-      对象的解构也可以指定默认值：
-      
+      对象的解构也可以指定默认值：默认值生效的条件是，对象的属性值严格等于undefined
+              var {x, y = 5} = {x: 1};
+                  x // 1
+                  y // 5
+              由于数组本质是特殊的对象，因此可以对数组进行对象属性的解构。
+              解构赋值允许等号左边的模式之中，不放置任何变量名。
+              
+   变量先声明后赋值时的解构：
+            对于数组，不会报错：
+                  var a, b;
+                  [a, b] = [1, 2];
+                  console.log(a); // 1
+                  console.log(b); // 2
+            但是对于对象来说就会报错：
+                  let x;
+                  {x} = {x: 1};// SyntaxError: syntax error
+                  
+                  解决办法：
+                        let x;
+                        ({x} = {x: 1});    //具体原因，参考：https://developer.mozilla.org/zh-                                             CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
       
       
       
