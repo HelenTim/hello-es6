@@ -30,6 +30,9 @@ ES6 各种新语法 入门了解  石川blue讲解
 
 ----
 
+- 自己新增内容
+    -正则
+
 ## 1.ES6怎么来的
 
 - ECMAScript 和 JavaScript
